@@ -1,0 +1,65 @@
+﻿RED NOTICE:
+Demo là 1 clip up lên youtube
+Design nền trắng (lên máy chiếu nhìn cho rõ), màn hình menu và màn hình game phải có sự liên quan và đồng bộ (cùng màu ...)
+Hạn chế việc cả màn hình chỉ in vài chữ
+Không khuyến khích âm thanh nền, chủ yếu là âm thanh khi tích X và O 
+Tên file người chơi lưu game có giới hạn kí tự
+Cơ chế undo dùng cấu trúc Stack [Nếu làm thêm]
+Search youtube : đồ án caro trương toàn thịnh để coi demo
+	https://www.youtube.com/watch?v=vD8EUa3vhpU
+
+GITHUB: https://github.com/BuiNguyenTin/Caro
+
+CẤU TRÚC:
+Page 1: Begin: Introduce Project, hình ảnh tượng trưng cho đồ án đó, info (tên học phần, trường, lớp)
+Page 2: Menu 
+	m1: Play Game		(Move to Page 3 [Mode])
+	m2: LeaderBoard		(Move to Page 4 [LDBoard])
+	m3: Instruction		(Move to Page 5 [Ins])
+	m4: Setting			(Move to Page 6 [Setting])
+	m5: Information		(Move to Page 7 [Infor])
+	m6: Back			(Move to Page 1 [Begin])
+Page 3: Mode Play
+	md1: Play with bot	(Move to Page 8 [Play Bot])
+	md2: Play 2 players (Move to Page 9 [Play together])
+Page 4: Leaderboard
+	Open file "Leaderboard.txt"; It includes name, time playing
+	It depends on Mode Play(in Page 3)
+Page 5: Instruction 
+	It shows How to tick X & O (W, A, S, D), KeyboardInput
+	Press "ESC" move to Page 
+Page 6: Setting 
+	Rule: chặn hai đầu
+	Colors of X and O
+Page 7: Information
+	Information of Project (Major, teacher, proceedings of a meeting, members, time to begin/end)
+Page 8: Play with bot
+	No AI
+	if win, move to Page 10 [Win]
+	else move to Page 11 [Lose]
+Page 9: Play together
+	if win, move to Page 10 [Win]
+	else move to Page 11 [Lose]
+Page 10:
+	Visual
+	Press "Enter"" to enrol the LDB
+Page 11:
+	Visual
+	It shows Menu (Replay, Back to Menu)
+Page 12: End
+	Visual
+
+KEYBOARD INPUT:
+W, A, S, D: Move
+Enter: Select, tick, ...
+ESC: exit
+
+
+TASKS: 	*Dựa vào video YT bên trên
+- Kiếm nhạc nền, nhạc hiệu ứng (khi tick, thua, thắng, nhấn tick bị trùng)
+- Ráng tìm mấy chữ kiểu X & O
+- Report
+- Intro/ outro video
+- 
+
+	
