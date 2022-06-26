@@ -149,6 +149,8 @@
   <ItemGroup>
     <Text Include="BotWin.txt" />
     <Text Include="ContentsTasks.txt" />
+    <Text Include="Draw.txt" />
+    <Text Include="Logo.txt" />
     <Text Include="P1Win.txt" />
     <Text Include="P2Win.txt" />
   </ItemGroup>

@@ -47,6 +47,12 @@
     <Text Include="BotWin.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="Draw.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="Logo.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h">
