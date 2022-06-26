@@ -1,6 +1,0 @@
-#include "Caro.h"
-
-int main()
-{
-    return 0;
-}

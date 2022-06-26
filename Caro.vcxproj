@@ -139,13 +139,22 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Caro.cpp" />
+    <ClCompile Include="Board.cpp" />
+    <ClCompile Include="Common.cpp" />
+    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="Main.cpp" />
+    <ClCompile Include="Menu.cpp" />
+    <ClCompile Include="Point.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ContentsTasks.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Caro.h" />
+    <ClInclude Include="Board.h" />
+    <ClInclude Include="Common.h" />
+    <ClInclude Include="Game.h" />
+    <ClInclude Include="Menu.h" />
+    <ClInclude Include="Point.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
