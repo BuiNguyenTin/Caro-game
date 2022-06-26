@@ -42,7 +42,7 @@ void Common::hideScrollBars()
 
 void Common::setConsoleTitle()
 {
-	SetConsoleTitle(L"21127702");
+	SetConsoleTitle(L"21127702_21127386_21127584");
 }
 
 void Common::disableMaximize()
@@ -88,15 +88,15 @@ int Common::getConsoleInput()
 	{
 		switch (_getch())
 		{
-		case 72:				//lên
+		case 72:				//move up
 			return 2;
-		case 75:				//trái
+		case 75:				//move left
 			return 3;
-		case 77:				//phải
+		case 77:				//move right
 			return 4;
-		case 80:				//xuống
+		case 80:				//move down
 			return 5;
-		default:				//nút khác
+		default:				
 			return 0;
 		}
 	}
@@ -117,7 +117,7 @@ int Common::getConsoleInput()
 		else if (c == 72 || c == 104) //H, h
 			return 7;
 		else
-			return 0;                 //nút khác
+			return 0;            
 	}
 }
 

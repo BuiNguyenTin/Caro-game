@@ -147,7 +147,10 @@
     <ClCompile Include="Point.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <Text Include="BotWin.txt" />
     <Text Include="ContentsTasks.txt" />
+    <Text Include="P1Win.txt" />
+    <Text Include="P2Win.txt" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h" />

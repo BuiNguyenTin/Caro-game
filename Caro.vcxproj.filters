@@ -38,6 +38,15 @@
     <Text Include="ContentsTasks.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="P1Win.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="P2Win.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="BotWin.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h">

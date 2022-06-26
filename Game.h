@@ -12,6 +12,7 @@
 #define TOP 1
 
 using namespace std;
+
 class Game
 {
 private:

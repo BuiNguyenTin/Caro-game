@@ -298,15 +298,11 @@ void Menu::exitScreen()
 	Common::showCursor(false);
 	Common::clearConsole();
 	Common::setConsoleColor(BRIGHT_WHITE, BLACK);
-	printRectangle(36, 18, 35, 8);
-	printRectangle(39, 23, 7, 2);
-	printRectangle(62, 23, 6, 2);
-	Common::setConsoleColor(BRIGHT_WHITE, RED);
 	printLogo();
-	Common::gotoXY(44, 20);
-	cout << "Do you want to exit?";
+	Common::gotoXY(40, 16);
+	cout << "Do you want to exit Caro game?";
 	string str[2] = { "Yes", "No" };
-	int left[] = { 37,42,49,60,65,71 }, word[] = { 32,32,175,174 }, color[] = { BLACK, RED }, top = 24;
+	int left[] = { 37,42,49,60,65,71 }, color[] = { BLACK, RED }, top = 20;
 	bool choice = 0;
 	bool loop = 1;
 	auto print1 = [&]()
@@ -316,9 +312,24 @@ void Menu::exitScreen()
 		{
 			Common::playSound(2);
 			Common::setConsoleColor(BRIGHT_WHITE, color[i]);
-			Common::gotoXY(left[choice * 3], top);        putchar(word[i * 2]);
-			Common::gotoXY(left[choice * 3 + 1], top);    cout << str[choice];
-			Common::gotoXY(left[choice * 3 + 2], top);    putchar(word[i * 2 + 1]);
+			Common::gotoXY(left[choice * 3], top);
+			{
+				if (i == 1)
+				{
+					cout << '~';
+				}
+				else cout << ' ';
+			}
+			Common::gotoXY(left[choice * 3 + 1], top);    
+				cout << str[choice];
+			Common::gotoXY(left[choice * 3 + 2], top);    
+			{
+				if (i == 1)
+				{
+					cout << '~';
+				}
+				else cout << ' ';
+			}
 			if (!i++)
 				choice = !choice;
 		}
@@ -335,7 +346,12 @@ void Menu::exitScreen()
 		{
 			if (!choice)
 			{
+				Common::setConsoleColor(BLACK, BRIGHT_WHITE);
 				Common::clearConsole();
+				Common::gotoXY(40, 16);
+				cout << "Press any key to close Caro game";
+				Sleep(200);
+				Common::setConsoleColor(BLACK, BLACK);
 				exit(0);
 			}
 			return;
