@@ -53,6 +53,9 @@
     <Text Include="Logo.txt">
       <Filter>Resource Files</Filter>
     </Text>
+    <Text Include="ListLoad.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Board.h">

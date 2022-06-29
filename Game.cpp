@@ -371,7 +371,7 @@ void Game::setUpGame(int mode, string fileName)
 {
 	if (mode == 3)
 	{
-		string fullPath = "load\\" + fileName + ".txt";
+		string fullPath = fileName + ".txt";
 		ifstream inFile(fullPath);
 		getline(inFile, _p1Name);
 		getline(inFile, _p2Name);
@@ -449,15 +449,54 @@ void Game::printWinPos()
 
 void Game::saveData()
 {
-	string path;
-	if (_countRounds % 2 == 1 && (!_finish || _loop))
+	string path, temp;
+
+	//path = _p1Name + "-" + _p2Name + ".txt";
+
+	/*if (_countRounds % 2 == 1 && (!_finish || _loop))
 	{
 		path = "load\\" + _p2Name + "-" + _p1Name + ".txt";
+		temp = "load\\" + _p2Name + "-" + _p1Name;
+	}
+	else
+	{*/ 
+		path = "load\\" + _p1Name + "-" + _p2Name + ".txt";
+		temp = "load\\" + _p1Name + "-" + _p2Name;
+	//} 
+	
+	ifstream fi;
+	ofstream fo;
+
+	bool Ck = 1;
+
+	fi.open("ListLoad.txt");
+	if (!fi)
+	{
+		cout << "cannot open file" << endl;
 	}
 	else
 	{
-		path = "load\\" + _p1Name + "-" + _p2Name + ".txt";
+		string Temp1;
+		while (!fi.eof())
+		{
+			getline(fi, Temp1, '\n');
+			if (Temp1 == temp)
+			{
+				Ck = 0;
+			}
+		}
 	}
+	fi.close();
+
+	if (Ck == 1)
+	{
+		fo.open("ListLoad.txt", ios::app);
+		//string temp = path;
+		//temp.erase(temp.begin(), temp.begin() + 4);
+		fo << temp << endl;
+		fo.close();
+	}
+	
 	ofstream outFile(path);
 	outFile << _p1Name << endl;
 	outFile << _p2Name << endl;

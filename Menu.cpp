@@ -1,5 +1,7 @@
 ﻿#include "Menu.h"
 
+using namespace std;
+
 int Menu::current_option;
 const string Menu::options[8] = { "Play", "Load", "Help", "Exit", " PvP ", "PvC(easy)", "PvC(hard)", "Back" };
 
@@ -112,7 +114,7 @@ void Menu::changeOption(bool direction, bool flag)
 {
 	int top = 21;
 	if ((direction == 0 && (current_option == 4 || current_option == 0))
-		|| (direction == 1 && (current_option == 3 || current_option == 7)))
+	|| (direction == 1 && (current_option == 3 || current_option == 7)))
 	{
 		Common::playSound(4);
 		return;
@@ -172,6 +174,9 @@ void Menu::helpScreen()
 	Common::showCursor(false);
 	Common::setConsoleColor(BRIGHT_WHITE, BLACK);
 	Common::clearConsole();
+
+
+
 	int left = 13, top = 2, width = 81, height = 23;
 	int line1 = 6, line2 = 19, line3 = 24;
 	printRectangle(left, top, width, height);
@@ -190,58 +195,56 @@ void Menu::helpScreen()
 		Common::gotoXY(line3, top + i);
 		putchar('|');
 	}
-	Common::gotoXY(line3, line1);
-	putchar(197);
-	Common::gotoXY(line3, line2);
-	putchar(197);
-	//=====================================================================//
-	Common::setConsoleColor(BRIGHT_WHITE, RED);
-	Common::gotoXY(left + 3, top + 2);
-	cout << "Moves:";
-	Common::gotoXY(left + 20, top + 1);
-	putchar(249); cout << "Up:    W, up arrow";
-	Common::gotoXY(left + 52, top + 1);
-	putchar(249); cout << "Down:  S, down arrow";
-	Common::gotoXY(left + 20, top + 3);
-	putchar(249); cout << "Left:  A, left arrow";
-	Common::gotoXY(left + 52, top + 3);
-	putchar(249); cout << "Right: D, right arrow";
-	//=====================================================================//
-	Common::gotoXY(left + 3, top + 10);
-	cout << "Rules:";
-	Common::gotoXY(left + 13, top + 5);
-	int left1 = left + 13;
-	putchar(249); cout << "The player representing the 'X' symbol gets to take the first turn";
-	Common::gotoXY(left1, top + 6);
-	cout << " followed by the player representing the 'O' symbol.";
-	Common::gotoXY(left1, top + 8);
-	putchar(249); cout << "Players take turns placing their symbol on an open intersection";
-	Common::gotoXY(left1, top + 9);
-	cout << " on the board.";
-	Common::gotoXY(left1, top + 11);
-	putchar(249); cout << "The player that manages to create exactly five in a row first,";
-	Common::gotoXY(left1, top + 12);
-	cout << " without being blocked by another color or symbol at either end";
-	Common::gotoXY(left1, top + 13);
-	cout << " wins the round.";
-	Common::gotoXY(left1, top + 15);
-	putchar(249); cout << "The row can be horizontal, vertical, or diagonal as long as";
-	Common::gotoXY(left1, top + 16);
-	cout << " it is unbroken.";
-	//=====================================================================//
-	Common::gotoXY(left + 3, top + 20);
-	cout << "About:";
-	Common::gotoXY(left + 28, top + 18);
-	cout << "Teacher:            Truong Toan Thinh";
-	Common::gotoXY(left + 28, top + 19);
-	cout << "Teaching assistant: Nguyen Hai Dang";
-	Common::gotoXY(left + 13, top + 21);
-	cout << "+ Nguyen Xuan Phat (19127504)       + Pham Tien Quan     (19127526)";
-	Common::gotoXY(left + 13, top + 22);
-	cout << "+ Dang Tu Thieu    (19127557)       + Luong Truong Thinh (19127559)";
+	//Common::gotoXY(line3, line1);
+	//putchar(197);
+	//Common::gotoXY(line3, line2);
+	//putchar(197);
+	////=====================================================================//
+	//Common::setConsoleColor(BRIGHT_WHITE, RED);
+	//Common::gotoXY(left + 3, top + 2);
+	//cout << "Moves:";
+	//Common::gotoXY(left + 20, top + 1);
+	//putchar(249); cout << "Up:    W, up arrow";
+	//Common::gotoXY(left + 52, top + 1);
+	//putchar(249); cout << "Down:  S, down arrow";
+	//Common::gotoXY(left + 20, top + 3);
+	//putchar(249); cout << "Left:  A, left arrow";
+	//Common::gotoXY(left + 52, top + 3);
+	//putchar(249); cout << "Right: D, right arrow";
+	////=====================================================================//
+	//Common::gotoXY(left + 3, top + 10);
+	//cout << "Rules:";
+	//Common::gotoXY(left + 13, top + 5);
+	//int left1 = left + 13;
+	//putchar(249); cout << "The player representing the 'X' symbol gets to take the first turn";
+	//Common::gotoXY(left1, top + 6);
+	//cout << " followed by the player representing the 'O' symbol.";
+	//Common::gotoXY(left1, top + 8);
+	//putchar(249); cout << "Players take turns placing their symbol on an open intersection";
+	//Common::gotoXY(left1, top + 9);
+	//cout << " on the board.";
+	//Common::gotoXY(left1, top + 11);
+	//putchar(249); cout << "The player that manages to create exactly five in a row first,";
+	//Common::gotoXY(left1, top + 12);
+	//cout << " without being blocked by another color or symbol at either end";
+	//Common::gotoXY(left1, top + 13);
+	//cout << " wins the round.";
+	//Common::gotoXY(left1, top + 15);
+	//putchar(249); cout << "The row can be horizontal, vertical, or diagonal as long as";
+	//Common::gotoXY(left1, top + 16);
+	//cout << " it is unbroken.";
+	////=====================================================================//
+	//Common::gotoXY(left + 3, top + 20);
+	//cout << "About:";
+	//Common::gotoXY(left + 28, top + 18);
+	//cout << "Teacher:            Truong Toan Thinh";
+	//Common::gotoXY(left + 28, top + 19);
+	//cout << "Teaching assistant: Nguyen Hai Dang";
+	//Common::gotoXY(left + 13, top + 21);
+	//cout << "+ Nguyen Xuan Phat (19127504)       + Pham Tien Quan     (19127526)";
+	//Common::gotoXY(left + 13, top + 22);
+	//cout << "+ Dang Tu Thieu    (19127557)       + Luong Truong Thinh (19127559)";
 
-	Common::setConsoleColor(BRIGHT_WHITE, BLACK);
-	printRectangle(49, 27, 8, 2);
 	Common::setConsoleColor(BRIGHT_WHITE, RED);
 	Common::gotoXY(47, 28);
 	putchar('~');
@@ -365,9 +368,27 @@ void Menu::playPvC2()
 
 void Menu::loadScreen()
 {
-	/*Common::clearConsole();
+	Common::clearConsole();
 	vector<string> fileName;
-	for (auto & p : filesystem::recursive_directory_iterator("load"))
+
+	ifstream fi;
+	fi.open("ListLoad.txt");
+	if (!fi)
+	{
+		cout << "Cannot open file List Load" << endl;
+	}
+	else
+	{
+		string temp;
+		while (!fi.eof())
+		{
+			getline(fi, temp);
+			fileName.push_back(temp);
+		}
+	}
+	fi.close();
+
+	/*for (auto & p : filesystem::directory_iterator("load"))
 	{
 		if (p.path().extension() == ".txt")
 		{
@@ -375,7 +396,7 @@ void Menu::loadScreen()
 			temp.erase(temp.find_last_of('.'));
 			fileName.push_back(temp);
 		}
-	}
+	}*/
 	if (!fileName.size())
 	{
 		Common::gotoXY(42, 15);
@@ -408,7 +429,7 @@ void Menu::loadScreen()
 		{
 			Common::playSound(4);
 		}
-	}*/
+	}
 }
 
 void Menu::changeFile(int key, vector<string>& fileName, int& file)
