@@ -20,7 +20,6 @@ Board::~Board()
 	_winPos = nullptr;
 }
 
-
 int Board::getSize()
 {
 	return _size;
@@ -59,7 +58,7 @@ int Board::getYAt(int i, int j)
 void Board::resetData()
 {
 	if (_size == 0)
-		return; // Firstly calling constructor before calling resetData
+		return;									// Firstly calling constructor before calling resetData
 	for (int i = 0; i < _size; i++)
 	{
 		for (int j = 0; j < _size; j++)
@@ -81,13 +80,13 @@ void Board::drawBoard()
 
 	//Ve duong tren
 	Common::gotoXY(_left + 1, _top);
-	putchar('*');
+	cout <<'*';
 	for (int i = 1; i < _size * 4; i++)
 	{
 		Sleep(5);
-		putchar('-');
+		cout << '-';
 	}
-	putchar('*');
+	cout << '*';
 
 
 	//Ve duong ben phai
@@ -95,10 +94,10 @@ void Board::drawBoard()
 	{
 		Sleep(10);
 		Common::gotoXY(_size * 4 + _left + 1, i + _top);
-		putchar('|');
+		cout << '|';
 	}
 	Common::gotoXY(_size * 4 + _left + 1, _size * 2 + _top);
-	putchar('*');
+	cout << '*';
 
 
 	//Ve duong duoi
@@ -106,17 +105,17 @@ void Board::drawBoard()
 	{
 		Common::gotoXY(_size * 4 + _left - i + 1, _size * 2 + _top);
 		Sleep(5);
-		putchar('-');
+		cout << '-';
 	}
 	Common::gotoXY(_left + 1, _size * 2 + _top);
-	putchar('*');
+	cout << '*';
 
 	//Ve duong ben trai
 	for (int i = 1; i < _size * 2; i++)
 	{
 		Sleep(10);
 		Common::gotoXY(_left + 1, _size * 2 + _top - i);
-		putchar('|');
+		cout << '|';
 	}
 
 	//Ve cac duong doc
@@ -127,7 +126,7 @@ void Board::drawBoard()
 			if (i % 2 != 0)
 			{
 				Common::gotoXY(j + _left + 1, i + _top);
-				putchar('|');
+				cout << '|';
 			}
 		}
 		Sleep(10);
@@ -140,14 +139,13 @@ void Board::drawBoard()
 		{
 			Common::gotoXY(i + _left + 1, j + _top);
 			if (i % 4 == 0)
-				putchar('+');
+				cout << '+';
 			else
-				putchar('-');
+				cout << '-';
 		}
 		Sleep(5);
 	}
 }
-
 
 int Board::checkBoard(int pX, int pY, bool pTurn)
 {
@@ -348,6 +346,7 @@ bool Board::checkCol(int i, int j, int turn)
 	}
 	return false;
 }
+
 bool Board::checkDiag1(int i, int j, int turn)
 {
 	int LR_Col = 0, LR_Row = 0, UL_Col = 0, UL_Row = 0;
@@ -430,6 +429,7 @@ bool Board::checkDiag1(int i, int j, int turn)
 	}
 	return false;
 }
+
 bool Board::checkDiag2(int i, int j, int turn)
 {
 	int LL_Row = 0, LL_Col = 0, UR_Row = 0, UR_Col = 0;
@@ -514,904 +514,7 @@ bool Board::checkDiag2(int i, int j, int turn)
 	return false;
 }
 
-long Board::scoreAtkRow(int row, int col)
-{
-	long score_col = 0;
-	long score_attack = 0;
-	int score_player1 = 0;
-	int score_player2 = 0;
-	int score_com1 = 0;
-	int score_com2 = 0;
-	for (int count1 = 1; count1 < 6 && col + count1 < _size; count1++)
-	{
-		if (_pArr[row][col + count1].getCheck() == -1)
-		{
-			score_player1++;
-		}
-		if (_pArr[row][col + count1].getCheck() == 1)
-		{
-			score_com1++;
-			break;
-		}
-		if (_pArr[row][col + count1].getCheck() == 0)
-		{
-			for (int count2 = 2; count2 < 7 && col + count2 < _size; count2++)
-			{
-				if (_pArr[row][col + count2].getCheck() == -1)
-				{
-					score_player2++;
-				}
-				if (_pArr[row][col + count2].getCheck() == 1)
-				{
-					score_com2++;
-					break;
-				}
-				if (_pArr[row][col + count2].getCheck() == 0)
-				{
-					break;
-				}
-			}
-			break;
-		}
-	}
-	for (int count1 = 1; count1 < 6 && col - count1 >= 0; count1++)
-	{
-		if (_pArr[row][col - count1].getCheck() == -1)
-		{
-			score_player1++;
-		}
-		if (_pArr[row][col - count1].getCheck() == 1)
-		{
-			score_com1++;
-			break;
-		}
-		if (_pArr[row][col - count1].getCheck() == 0)
-		{
-			for (int count2 = 2; count2 < 7 && col - count2 >= 0; count2++)
-			{
-				if (_pArr[row][col - count2].getCheck() == -1)
-				{
-					score_player2++;
-				}
-				if (_pArr[row][col - count2].getCheck() == 1)
-				{
-					score_com2++;
-					break;
-				}
-				if (_pArr[row][col - count2].getCheck() == 0)
-				{
-					break;
-				}
-			}
-			break;
-		}
-	}
-	if (score_com1 >= 2)
-	{
-		return 0;
-	}
-	if (score_com1 == 0)
-	{
-		score_col += atkPoint[score_player1] * 2;
-	}
-	else
-	{
-		score_col += atkPoint[score_player1];
-	}
-	if (score_com2 == 0)
-	{
-		score_col += atkPoint[score_player2] * 2;
-	}
-	else
-	{
-		score_col += atkPoint[score_player2];
-	}
-	if (score_player1 >= score_player2)
-	{
-		score_col -= 1;
-	}
-	else
-	{
-		score_col -= 2;
-	}
-	if (score_player1 == 4)
-	{
-		score_col *= 2;
-	}
-	if (score_player1 == 0)
-	{
-		score_col += defPoint[score_com1] * 2;
-	}
-	else
-	{
-		score_col += defPoint[score_com1];
-	}
-	if (score_player2 == 0)
-	{
-		score_col += defPoint[score_com2] * 2;
-	}
-	else
-	{
-		score_col += defPoint[score_com2];
-	}
-	return score_col;
-}
-long Board::scoreAtkCol(int row, int col)
-{
-	long score_row = 0;
-	long score_attack = 0;
-	int score_player1 = 0;
-	int score_player2 = 0;
-	int score_com1 = 0;
-	int score_com2 = 0;
-	for (int count1 = 1; count1 < 6 && row + count1 < _size; count1++)
-	{
-		if (_pArr[row + count1][col].getCheck() == -1)
-		{
-			score_player1++;
-		}
-		if (_pArr[row + count1][col].getCheck() == 1)
-		{
-			score_com1++;
-			break;
-		}
-		if (_pArr[row + count1][col].getCheck() == 0)
-		{
-			for (int count2 = 2; count2 < 7 && row + count2 < _size; count2++)
-			{
-				if (_pArr[row + count2][col].getCheck() == -1)
-				{
-					score_player2++;
-				}
-				if (_pArr[row + count2][col].getCheck() == 1)
-				{
-					score_com2++;
-					break;
-				}
-				if (_pArr[row + count2][col].getCheck() == 0)
-				{
-					break;
-				}
-			}
-			break;
-		}
-	}
-	for (int count1 = 1; count1 < 6 && row - count1 >= 0; count1++)
-	{
-		if (_pArr[row - count1][col].getCheck() == -1)
-		{
-			score_player1++;
-		}
-		if (_pArr[row - count1][col].getCheck() == 1)
-		{
-			score_com1++;
-			break;
-		}
-		if (_pArr[row - count1][col].getCheck() == 0)
-		{
-			for (int count2 = 2; count2 < 7 && row - count2 >= 0; count2++)
-			{
-				if (_pArr[row - count2][col].getCheck() == -1)
-				{
-					score_player2++;
-				}
-				if (_pArr[row - count2][col].getCheck() == 1)
-				{
-					score_com2++;
-					break;
-				}
-				if (_pArr[row - count2][col].getCheck() == 0)
-				{
-					break;
-				}
-			}
-			break;
-		}
-	}
-	if (score_com1 >= 2)
-	{
-		return 0;
-	}
-	if (score_com1 == 0)
-	{
-		score_row += atkPoint[score_player1] * 2;
-	}
-	else
-	{
-		score_row += atkPoint[score_player1];
-	}
-	if (score_com2 == 0)
-	{
-		score_row += atkPoint[score_player2] * 2;
-	}
-	else
-	{
-		score_row += atkPoint[score_player2];
-	}
-	if (score_player1 >= score_player2)
-	{
-		score_row -= 1;
-	}
-	else
-	{
-		score_row -= 2;
-	}
-	if (score_player1 == 4)
-	{
-		score_row *= 2;
-	}
-	if (score_player1 == 0)
-	{
-		score_row += defPoint[score_com1] * 2;
-	}
-	else
-	{
-		score_row += defPoint[score_com1];
-	}
-	if (score_player2 == 0)
-	{
-		score_row += defPoint[score_com2] * 2;
-	}
-	else
-	{
-		score_row += defPoint[score_com2];
-	}
-	return score_row;
-}
-long Board::scoreAtkDiag1(int row, int col)
-{
-	long score_diag1 = 0;
-	long score_attack = 0;
-	int score_player1 = 0;
-	int score_player2 = 0;
-	int score_com1 = 0;
-	int score_com2 = 0;
-	for (int count1 = 1; count1 < 6 && row + count1 < _size && col + count1 < _size; count1++)
-	{
-		if (_pArr[row + count1][col + count1].getCheck() == -1)
-		{
-			score_player1++;
-		}
-		if (_pArr[row + count1][col + count1].getCheck() == 1)
-		{
-			score_com1++;
-			break;
-		}
-		if (_pArr[row + count1][col + count1].getCheck() == 0)
-		{
-			for (int count2 = 2; count2 < 7 && row + count2 < _size && col + count2 < _size; count2++)
-			{
-				if (_pArr[row + count2][col + count2].getCheck() == -1)
-				{
-					score_player2++;
-				}
-				if (_pArr[row + count2][col + count2].getCheck() == 1)
-				{
-					score_com2++;
-					break;
-				}
-				if (_pArr[row + count2][col + count2].getCheck() == 0)
-				{
-					break;
-				}
-			}
-			break;
-		}
-	}
-	for (int count1 = 1; count1 < 6 && row - count1 >= 0 && col - count1 >= 0; count1++)
-	{
-		if (_pArr[row - count1][col - count1].getCheck() == -1)
-		{
-			score_player1++;
-		}
-		if (_pArr[row - count1][col - count1].getCheck() == 1)
-		{
-			score_com1++;
-			break;
-		}
-		if (_pArr[row - count1][col - count1].getCheck() == 0)
-		{
-			for (int count2 = 2; count2 < 7 && row - count2 >= 0 && col - count2 >= 0; count2++)
-			{
-				if (_pArr[row - count2][col - count2].getCheck() == -1)
-				{
-					score_player2++;
-				}
-				if (_pArr[row - count2][col - count2].getCheck() == 1)
-				{
-					score_com2++;
-					break;
-				}
-				if (_pArr[row - count2][col - count2].getCheck() == 0)
-				{
-					break;
-				}
-			}
-			break;
-		}
-	}
-	if (score_com1 >= 2)
-	{
-		return 0;
-	}
-	if (score_com1 == 0)
-	{
-		score_diag1 += atkPoint[score_player1] * 2;
-	}
-	else
-	{
-		score_diag1 += atkPoint[score_player1];
-	}
-	if (score_com2 == 0)
-	{
-		score_diag1 += atkPoint[score_player2] * 2;
-	}
-	else
-	{
-		score_diag1 += atkPoint[score_player2];
-	}
-	if (score_player1 >= score_player2)
-	{
-		score_diag1 -= 1;
-	}
-	else
-	{
-		score_diag1 -= 2;
-	}
-	if (score_player1 == 4)
-	{
-		score_diag1 *= 2;
-	}
-	if (score_player1 == 0)
-	{
-		score_diag1 += defPoint[score_com1] * 2;
-	}
-	else
-	{
-		score_diag1 += defPoint[score_com1];
-	}
-	if (score_player2 == 0)
-	{
-		score_diag1 += defPoint[score_com2] * 2;
-	}
-	else
-	{
-		score_diag1 += defPoint[score_com2];
-	}
-	return score_diag1;
-}
-long Board::scoreAtkDiag2(int row, int col)
-{
-	long score_diag2 = 0;
-	long score_attack = 0;
-	int score_player1 = 0;
-	int score_player2 = 0;
-	int score_com1 = 0;
-	int score_com2 = 0;
-	for (int count1 = 1; count1 < 6 && row + count1 < _size && col - count1 < _size; count1++)
-	{
-		if (_pArr[row + count1][col - count1].getCheck() == -1)
-		{
-			score_player1++;
-		}
-		if (_pArr[row + count1][col - count1].getCheck() == 1)
-		{
-			score_com1++;
-			break;
-		}
-		if (_pArr[row + count1][col - count1].getCheck() == 0)
-		{
-			for (int count2 = 2; count2 < 7 && row + count2 < _size && col - count2 < _size; count2++)
-			{
-				if (_pArr[row + count2][col - count2].getCheck() == -1)
-				{
-					score_player2++;
-				}
-				if (_pArr[row + count2][col - count2].getCheck() == 1)
-				{
-					score_com2++;
-					break;
-				}
-				if (_pArr[row + count2][col - count2].getCheck() == 0)
-				{
-					break;
-				}
-			}
-			break;
-		}
-	}
-	for (int count1 = 1; count1 < 6 && row - count1 >= 0 && col + count1 >= 0; count1++)
-	{
-		if (_pArr[row - count1][col + count1].getCheck() == -1)
-		{
-			score_player1++;
-		}
-		if (_pArr[row - count1][col + count1].getCheck() == 1)
-		{
-			score_com1++;
-			break;
-		}
-		if (_pArr[row - count1][col + count1].getCheck() == 0)
-		{
-			for (int count2 = 2; count2 < 7 && row - count2 >= 0 && col + count2 >= 0; count2++)
-			{
-				if (_pArr[row - count2][col + count2].getCheck() == -1)
-				{
-					score_player2++;
-				}
-				if (_pArr[row - count2][col + count2].getCheck() == 1)
-				{
-					score_com2++;
-					break;
-				}
-				if (_pArr[row - count2][col + count2].getCheck() == 0)
-				{
-					break;
-				}
-			}
-			break;
-		}
-	}
-	if (score_com1 >= 2)
-	{
-		return 0;
-	}
-	if (score_com1 == 0)
-	{
-		score_diag2 += atkPoint[score_player1] * 2;
-	}
-	else
-	{
-		score_diag2 += atkPoint[score_player1];
-	}
-	if (score_com2 == 0)
-	{
-		score_diag2 += atkPoint[score_player2] * 2;
-	}
-	else
-	{
-		score_diag2 += atkPoint[score_player2];
-	}
-	if (score_player1 >= score_player2)
-	{
-		score_diag2 -= 1;
-	}
-	else
-	{
-		score_diag2 -= 2;
-	}
-	if (score_player1 == 4)
-	{
-		score_diag2 *= 2;
-	}
-	if (score_player1 == 0)
-	{
-		score_diag2 += defPoint[score_com1] * 2;
-	}
-	else
-	{
-		score_diag2 += defPoint[score_com1];
-	}
-	if (score_player2 == 0)
-	{
-		score_diag2 += defPoint[score_com2] * 2;
-	}
-	else
-	{
-		score_diag2 += defPoint[score_com2];
-	}
-	return score_diag2;
-}
-long Board::scoreDefRow(int row, int col)
-{
-	long  score_col = 0;
-	long  score_attack = 0;
-	int score_player1 = 0;
-	int score_player2 = 0;
-	int score_com1 = 0;
-	int score_com2 = 0;
-	for (int count1 = 1; count1 < 6 && col + count1 < _size; count1++)
-	{
-		if (_pArr[row][col + count1].getCheck() == -1)
-		{
-			score_player1++;
-			break;
-		}
-		if (_pArr[row][col + count1].getCheck() == 1)
-		{
-			score_com1++;
-		}
-		if (_pArr[row][col + count1].getCheck() == 0)
-		{
-			for (int count2 = 2; count2 < 7 && col + count2 < _size; count2++)
-			{
-				if (_pArr[row][col + count2].getCheck() == -1)
-				{
-					score_player2++;
-					break;
-				}
-				if (_pArr[row][col + count2].getCheck() == 1)
-				{
-					score_com2++;
-				}
-				if (_pArr[row][col + count2].getCheck() == 0)
-				{
-					break;
-				}
-			}
-			break;
-		}
-	}
-	for (int count1 = 1; count1 < 6 && col - count1 >= 0; count1++)
-	{
-		if (_pArr[row][col - count1].getCheck() == -1)
-		{
-			score_player1++;
-			break;
-		}
-		if (_pArr[row][col - count1].getCheck() == 1)
-		{
-			score_com1++;
-		}
-		if (_pArr[row][col - count1].getCheck() == 0)
-		{
-			for (int count2 = 2; count2 < 7 && col - count2 >= 0; count2++)
-			{
-				if (_pArr[row][col - count2].getCheck() == -1)
-				{
-					score_player2++;
-					break;
-				}
-				if (_pArr[row][col - count2].getCheck() == 1)
-				{
-					score_com2++;
-				}
-				if (_pArr[row][col - count2].getCheck() == 0)
-				{
-					break;
-				}
-			}
-			break;
-		}
-	}
-	if (score_player1 == 2)
-	{
-		return 0;
-	}
-	if (score_player1 == 0)
-	{
-		score_col += defPoint[score_com1] * 2;
-	}
-	else
-	{
-		score_col += defPoint[score_com1];
-	}
-	if (score_player2 == 0)
-		score_col += defPoint[score_com2] * 2;
-	else
-		score_col += defPoint[score_com2];
-	if (score_com1 >= score_com2)
-	{
-		score_col -= 1;
-	}
-	else
-	{
-		score_col -= 2;
-	}
-	if (score_com1 == 4)
-	{
-		score_col *= 2;
-	}
-	return score_col;
-}
-long Board::scoreDefCol(int row, int col)
-{
-	long score_row = 0;
-	long score_attack = 0;
-	int score_player1 = 0;
-	int score_player2 = 0;
-	int score_com1 = 0;
-	int score_com2 = 0;
-	for (int count1 = 1; count1 < 6 && row + count1 < _size; count1++)
-	{
-		if (_pArr[row + count1][col].getCheck() == -1)
-		{
-			score_player1++;
-			break;
-		}
-		if (_pArr[row + count1][col].getCheck() == 1)
-		{
-			score_com1++;
-		}
-		if (_pArr[row + count1][col].getCheck() == 0)
-		{
-			for (int count2 = 2; count2 < 7 && row + count2 < _size; count2++)
-			{
-				if (_pArr[row + count2][col].getCheck() == -1)
-				{
-					score_player2++;
-					break;
-				}
-				if (_pArr[row + count2][col].getCheck() == 1)
-				{
-					score_com2++;
-				}
-				if (_pArr[row + count2][col].getCheck() == 0)
-				{
-					break;
-				}
-			}
-			break;
-		}
-	}
-	for (int count1 = 1; count1 < 6 && row - count1 >= 0; count1++)
-	{
-		if (_pArr[row - count1][col].getCheck() == -1)
-		{
-			score_player1++;
-			break;
-		}
-		if (_pArr[row - count1][col].getCheck() == 1)
-		{
-			score_com1++;
-		}
-		if (_pArr[row - count1][col].getCheck() == 0)
-		{
-			for (int count2 = 2; count2 < 7 && row - count2 >= 0; count2++)
-			{
-				if (_pArr[row - count2][col].getCheck() == -1)
-				{
-					score_player2++;
-					break;
-				}
-				if (_pArr[row - count2][col].getCheck() == 1)
-				{
-					score_com2++;
-				}
-				if (_pArr[row - count2][col].getCheck() == 0)
-				{
-					break;
-				}
-			}
-			break;
-		}
-	}
-	if (score_player1 == 2)
-	{
-		return 0;
-	}
-	if (score_player1 == 0)
-	{
-		score_row += defPoint[score_com1] * 2;
-	}
-	else
-	{
-		score_row += defPoint[score_com1];
-	}
-	if (score_player2 == 0)
-		score_row += defPoint[score_com2] * 2;
-	else
-		score_row += defPoint[score_com2];
-	if (score_com1 >= score_com2)
-	{
-		score_row -= 1;
-	}
-	else
-	{
-		score_row -= 2;
-	}
-	if (score_com1 == 4)
-	{
-		score_row *= 2;
-	}
-	return score_row;
-}
-long Board::scoreDefDiag1(int row, int col)
-{
-	long score_diag1 = 0;
-	long score_attack = 0;
-	int score_player1 = 0;
-	int score_player2 = 0;
-	int score_com1 = 0;
-	int score_com2 = 0;
-	for (int count1 = 1; count1 < 6 && row + count1 < _size && col + count1 < _size; count1++)
-	{
-		if (_pArr[row + count1][col + count1].getCheck() == -1)
-		{
-			score_player1++;
-			break;
-		}
-		if (_pArr[row + count1][col + count1].getCheck() == 1)
-		{
-			score_com1++;
-		}
-		if (_pArr[row + count1][col + count1].getCheck() == 0)
-		{
-			for (int count2 = 2; count2 < 7 && row + count2 < _size && col + count2 < _size; count2++)
-			{
-				if (_pArr[row + count2][col + count2].getCheck() == -1)
-				{
-					score_player2++;
-					break;
-				}
-				if (_pArr[row + count2][col + count2].getCheck() == 1)
-				{
-					score_com2++;
-				}
-				if (_pArr[row + count2][col + count2].getCheck() == 0)
-				{
-					break;
-				}
-			}
-			break;
-		}
-	}
-	for (int count1 = 1; count1 < 6 && row - count1 >= 0 && col - count1 >= 0; count1++)
-	{
-		if (_pArr[row - count1][col - count1].getCheck() == -1)
-		{
-			score_player1++;
-			break;
-		}
-		if (_pArr[row - count1][col - count1].getCheck() == 1)
-		{
-			score_com1++;
-		}
-		if (_pArr[row - count1][col - count1].getCheck() == 0)
-		{
-			for (int count2 = 2; count2 < 7 && row - count2 >= 0 && col - count2 >= 0; count2++)
-			{
-				if (_pArr[row - count2][col - count2].getCheck() == -1)
-				{
-					score_player2++;
-					break;
-				}
-				if (_pArr[row - count2][col - count2].getCheck() == 1)
-				{
-					score_com2++;
-				}
-				if (_pArr[row - count2][col - count2].getCheck() == 0)
-				{
-					break;
-				}
-			}
-			break;
-		}
-	}
-	if (score_player1 == 2)
-	{
-		return 0;
-	}
-	if (score_player1 == 0)
-	{
-		score_diag1 += defPoint[score_com1] * 2;
-	}
-	else
-	{
-		score_diag1 += defPoint[score_com1];
-	}
-	if (score_player2 == 0)
-		score_diag1 += defPoint[score_com2] * 2;
-	else
-		score_diag1 += defPoint[score_com2];
-	if (score_com1 >= score_com2)
-	{
-		score_diag1 -= 1;
-	}
-	else
-	{
-		score_diag1 -= 2;
-	}
-	if (score_com1 == 4)
-	{
-		score_diag1 *= 2;
-	}
-	return score_diag1;
-}
-long Board::scoreDefDiag2(int row, int col)
-{
-	long score_diag2 = 0;
-	long score_attack = 0;
-	int score_player1 = 0;
-	int score_player2 = 0;
-	int score_com1 = 0;
-	int score_com2 = 0;
-	for (int count1 = 1; count1 < 6 && row + count1 < _size && col - count1 < _size; count1++)
-	{
-		if (_pArr[row + count1][col - count1].getCheck() == -1)
-		{
-			score_player1++;
-			break;
-		}
-		if (_pArr[row + count1][col - count1].getCheck() == 1)
-		{
-			score_com1++;
-		}
-		if (_pArr[row + count1][col - count1].getCheck() == 0)
-		{
-			for (int count2 = 2; count2 < 7 && row + count2 < _size && col - count2 < _size; count2++)
-			{
-				if (_pArr[row + count2][col - count2].getCheck() == -1)
-				{
-					score_player2++;
-					break;
-				}
-				if (_pArr[row + count2][col - count2].getCheck() == 1)
-				{
-					score_com2++;
-				}
-				if (_pArr[row + count2][col - count2].getCheck() == 0)
-				{
-					break;
-				}
-			}
-			break;
-		}
-	}
-	for (int count1 = 1; count1 < 6 && row - count1 >= 0 && col + count1 >= 0; count1++)
-	{
-		if (_pArr[row - count1][col + count1].getCheck() == -1)
-		{
-			score_player1++;
-			break;
-		}
-		if (_pArr[row - count1][col + count1].getCheck() == 1)
-		{
-			score_com1++;
-		}
-		if (_pArr[row - count1][col + count1].getCheck() == 0)
-		{
-			for (int count2 = 2; count2 < 7 && row - count2 >= 0 && col + count2 >= 0; count2++)
-			{
-				if (_pArr[row - count2][col + count2].getCheck() == -1)
-				{
-					score_player2++;
-					break;
-				}
-				if (_pArr[row - count2][col + count2].getCheck() == 1)
-				{
-					score_com2++;
-				}
-				if (_pArr[row - count2][col + count2].getCheck() == 0)
-				{
-					break;
-				}
-			}
-			break;
-		}
-	}
-	if (score_player1 == 2)
-	{
-		return 0;
-	}
-	if (score_player1 == 0)
-	{
-		score_diag2 += defPoint[score_com1] * 2;
-	}
-	else
-	{
-		score_diag2 += defPoint[score_com1];
-	}
-	if (score_player2 == 0)
-		score_diag2 += defPoint[score_com2] * 2;
-	else
-		score_diag2 += defPoint[score_com2];
-	if (score_com1 >= score_com2)
-	{
-		score_diag2 -= 1;
-	}
-	else
-	{
-		score_diag2 -= 2;
-	}
-	if (score_com1 == 4)
-	{
-		score_diag2 *= 2;
-	}
-	return score_diag2;
-}
-
-Point Board::PVC_easy()
+Point Board::PVC()
 {
 	int i, j;
 	do
@@ -1419,52 +522,6 @@ Point Board::PVC_easy()
 		i = getRandomInt(0, 13), j = getRandomInt(0, 13);
 	} while (_pArr[i][j].getCheck() != 0);
 	return Point(getXAt(i, j), getYAt(i, j));
-}
-
-Point Board::PVC_hard()
-{
-	int row = 0;
-	int col = 0;
-	long point = 0;
-	for (int i = 0; i < _size; i++)
-	{
-		for (int j = 0; j < _size; j++)
-		{
-			long atk = 0;
-			long def = 0;
-			if (_pArr[i][j].getCheck() == 0)
-			{
-				atk += scoreAtkRow(i, j);
-				atk += scoreAtkCol(i, j);
-				atk += scoreAtkDiag1(i, j);
-				atk += scoreAtkDiag2(i, j);
-				def += scoreDefRow(i, j);
-				def += scoreDefCol(i, j);
-				def += scoreDefDiag1(i, j);
-				def += scoreDefDiag2(i, j);
-
-				if (atk > def)
-				{
-					if (point < atk)
-					{
-						point = atk;
-						row = i;
-						col = j;
-					}
-				}
-				else
-				{
-					if (point < def)
-					{
-						point = def;
-						row = i;
-						col = j;
-					}
-				}
-			}
-		}
-	}
-	return Point(getXAt(row, col), getYAt(row, col));
 }
 
 void Board::loadBoard(ifstream& inFile)

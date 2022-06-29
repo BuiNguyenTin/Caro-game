@@ -3,7 +3,7 @@
 using namespace std;
 
 int Menu::current_option;
-const string Menu::options[8] = { "Play", "Load", "Help", "Exit", " PvP ", "PvC(easy)", "PvC(hard)", "Back" };
+const string Menu::options[7] = { "Play", "Load", "Help", "Exit", " PvP ", "PvC", "Back" };
 
 void Menu::mainScreen()
 {
@@ -14,8 +14,7 @@ void Menu::mainScreen()
 		{options[3], exitScreen},
 		{options[4], playPvP},
 		{options[5], playPvC1},
-		{options[6], playPvC2},
-		{options[7], goBack} };
+		{options[6], goBack} };
 	Common::playSound(8);
 	printAnimation();
 	bool loadMenu = 1;
@@ -114,7 +113,7 @@ void Menu::changeOption(bool direction, bool flag)
 {
 	int top = 21;
 	if ((direction == 0 && (current_option == 4 || current_option == 0))
-	|| (direction == 1 && (current_option == 3 || current_option == 7)))
+	|| (direction == 1 && (current_option == 3 || current_option == 6)))
 	{
 		Common::playSound(4);
 		return;
@@ -125,9 +124,9 @@ void Menu::changeOption(bool direction, bool flag)
 	if (flag)
 	{
 		Common::gotoXY(44, top + current_option % 4 * 2);
-		putchar(' ');
+		cout << ' ';
 		Common::gotoXY(64, top + current_option % 4 * 2);
-		putchar(' ');
+		cout << ' ';
 	}
 	(direction == 1) ? current_option++ : current_option--;
 	if (flag)
@@ -135,11 +134,11 @@ void Menu::changeOption(bool direction, bool flag)
 		Common::playSound(2);
 		Common::setConsoleColor(BRIGHT_WHITE, RED);
 		Common::gotoXY(44, top + current_option % 4 * 2);
-		putchar('~');
+		cout << '~';
 		Common::gotoXY(54 - (int)options[current_option].length() / 2, top + current_option % 4 * 2);
 		cout << options[current_option];
 		Common::gotoXY(64, top + current_option % 4 * 2);
-		putchar('~');
+		cout << '~';
 	}
 }
 
@@ -156,6 +155,8 @@ void Menu::mainMenu()
 
 void Menu::playMenu()
 {
+	system("cls");
+	printLogo();
 	current_option = 7;
 	changeOption(0, 0);
 	changeOption(0, 0);
@@ -183,17 +184,17 @@ void Menu::helpScreen()
 	Common::gotoXY(left + 1, line1);
 	for (int i = 0; i < width; i++)
 	{
-		putchar('-');
+		cout << '-';
 	}
 	Common::gotoXY(left + 1, line2);
 	for (int i = 0; i < width; i++)
 	{
-		putchar('-');
+		cout << '-';
 	}
 	for (int i = 1; i < height; i++)
 	{
 		Common::gotoXY(line3, top + i);
-		putchar('|');
+		cout << '|';
 	}
 	//Common::gotoXY(line3, line1);
 	//putchar(197);
@@ -247,11 +248,11 @@ void Menu::helpScreen()
 
 	Common::setConsoleColor(BRIGHT_WHITE, RED);
 	Common::gotoXY(47, 28);
-	putchar('~');
+	cout << '~';
 	Common::gotoXY(52, 28);
 	cout << "Back";
 	Common::gotoXY(60, 28);
-	putchar('~');
+	cout << '~';
 	while (Common::getConsoleInput() != 6)
 	{
 		Common::playSound(4);
@@ -261,25 +262,25 @@ void Menu::helpScreen()
 void Menu::printRectangle(int left, int top, int width, int height)
 {
 	Common::gotoXY(left, top);
-	putchar('+');
+	cout << '+';
 	for (int i = 0; i < width; i++)
-		putchar('-');
-	putchar('+');
+		cout << '-';
+	cout << '+';
 
 	int i = 0;
 	for (; i < height; i++)
 	{
 		Common::gotoXY(left, top + i + 1);
-		putchar('|');
+		cout << '|';
 		Common::gotoXY(left + width + 1, top + i + 1);
-		putchar('|');
+		cout << '|';
 	}
 
 	Common::gotoXY(left, top + i);
-	putchar('+');
+	cout << '+';
 	for (i = 0; i < width; i++)
-		putchar('-');
-	putchar('+');
+		cout << '-';
+	cout << '+';
 }
 
 void Menu::exitScreen()
@@ -359,13 +360,6 @@ void Menu::playPvC1()
 	g.startGame();
 }
 
-void Menu::playPvC2()
-{
-	Game g;
-	g.setUpGame(2);
-	g.startGame(); 
-}
-
 void Menu::loadScreen()
 {
 	Common::clearConsole();
@@ -387,16 +381,6 @@ void Menu::loadScreen()
 		}
 	}
 	fi.close();
-
-	/*for (auto & p : filesystem::directory_iterator("load"))
-	{
-		if (p.path().extension() == ".txt")
-		{
-			string temp = p.path().filename().string();
-			temp.erase(temp.find_last_of('.'));
-			fileName.push_back(temp);
-		}
-	}*/
 	if (!fileName.size())
 	{
 		Common::gotoXY(42, 15);

@@ -13,7 +13,7 @@ class Menu
 private:
 	static bool exitGame;				//Cờ thoát game
 	static int current_option;			//Lựa chọn hiện tại
-	const static string options[8];		//Tên các lựa chọn
+	const static string options[7];		//Tên các lựa chọn
 public:
 	static void mainScreen();								//Màn hình chính
 	static void mainMenu();									//Menu

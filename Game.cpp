@@ -69,7 +69,7 @@ void Game::startGame()
 			}
 			else
 			{
-				Point p = (_mode == 1) ? _b->PVC_easy() : _b->PVC_hard();
+				Point p = _b->PVC();
 				moveToDirection(p.getX(), p.getY());
 				processCheckBoard();
 			}
@@ -97,14 +97,14 @@ void Game::processCheckBoard()
 		if (c == 1)
 		{
 			Common::setConsoleColor(BRIGHT_WHITE, BLUE);
-			putchar(88);
+			cout << 'X';
 			Common::gotoXY(86, 8);
 			cout << _b->getCountX();
 		}
 		else
 		{
 			Common::setConsoleColor(BRIGHT_WHITE, RED);
-			putchar(79);
+			cout << 'O';
 			Common::gotoXY(86, 21);
 			cout << _b->getCountO();
 		}
@@ -172,7 +172,7 @@ void Game::moveRight()
 		if (_b->getCheckAtXY(_x, _y) == 0)
 		{
 			Common::gotoXY(_x, _y);
-			putchar(32);
+			cout << ' ';
 		}
 		_x += 4;
 		Common::gotoXY(_x, _y);
@@ -192,7 +192,7 @@ void Game::moveLeft()
 		if (_b->getCheckAtXY(_x, _y) == 0)
 		{
 			Common::gotoXY(_x, _y);
-			putchar(32);
+			cout << ' ';
 		}
 		_x -= 4;
 		Common::gotoXY(_x, _y);
@@ -212,7 +212,7 @@ void Game::moveDown()
 		if (_b->getCheckAtXY(_x, _y) == 0)
 		{
 			Common::gotoXY(_x, _y);
-			putchar(32);
+			cout << ' ';
 		}
 		_y += 2;
 		Common::gotoXY(_x, _y);
@@ -232,7 +232,7 @@ void Game::moveUp()
 		if (_b->getCheckAtXY(_x, _y) == 0)
 		{
 			Common::gotoXY(_x, _y);
-			putchar(32);
+			cout << ' ';
 		}
 		_y -= 2;
 		Common::gotoXY(_x, _y);
@@ -274,13 +274,12 @@ void Game::printTurnSymbol()
 			_changeTurn = 0;
 		}
 		if (_turn == 1)
-			putchar(120);
+			cout << 'x';
 		else
-			putchar(111);
+			cout << 'o';
 		Common::gotoXY(_x, _y);
 	}
 }
-
 
 void Game::printInterface()
 {
@@ -450,19 +449,9 @@ void Game::printWinPos()
 void Game::saveData()
 {
 	string path, temp;
-
-	//path = _p1Name + "-" + _p2Name + ".txt";
-
-	/*if (_countRounds % 2 == 1 && (!_finish || _loop))
-	{
-		path = "load\\" + _p2Name + "-" + _p1Name + ".txt";
-		temp = "load\\" + _p2Name + "-" + _p1Name;
-	}
-	else
-	{*/ 
-		path = "load\\" + _p1Name + "-" + _p2Name + ".txt";
-		temp = "load\\" + _p1Name + "-" + _p2Name;
-	//} 
+ 
+	path = "load\\" + _p1Name + "-" + _p2Name + ".txt";
+	temp = "load\\" + _p1Name + "-" + _p2Name;
 	
 	ifstream fi;
 	ofstream fo;
@@ -491,8 +480,6 @@ void Game::saveData()
 	if (Ck == 1)
 	{
 		fo.open("ListLoad.txt", ios::app);
-		//string temp = path;
-		//temp.erase(temp.begin(), temp.begin() + 4);
 		fo << temp << endl;
 		fo.close();
 	}
@@ -525,12 +512,12 @@ void Game::printLoadedSymbols()
 			if (c == 1)
 			{
 				Common::setConsoleColor(BRIGHT_WHITE, BLUE);
-				putchar(88);
+				cout << 'X';
 			}
 			else if (c == -1)
 			{
 				Common::setConsoleColor(BRIGHT_WHITE, RED);
-				putchar(79);
+				cout << 'O';
 			}
 		}
 	}
@@ -647,6 +634,7 @@ void Game::printP1Win()
 		}
 	}
 }
+
 void Game::printP2Win()
 {
 	Common::playSound(6);
@@ -685,6 +673,7 @@ void Game::printP2Win()
 		}
 	}
 }
+
 void Game::printBotWin()
 {
 	Common::playSound(6);
@@ -723,6 +712,7 @@ void Game::printBotWin()
 		}
 	}
 }
+
 void Game::printDraw()
 {
 	Common::playSound(6);
