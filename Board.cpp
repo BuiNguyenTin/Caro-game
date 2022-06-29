@@ -211,11 +211,11 @@ int Board::getCheckAtXY(int pX, int pY)
 	throw "Problem with cursor position";
 }
 
-bool Board::checkRow(int i, int j, int turn)
+bool Board::checkCol(int i, int j, int turn)
 {
 	int up = 0, down = 0;
 	int count = 0, col = i;
-	// kiểm tra hàng
+	
 	while (col <= _size - 1 && _pArr[col][j].getCheck() == _pArr[i][j].getCheck() && _pArr[i][j].getCheck() == turn)
 	{
 		if (col == _size - 1)
@@ -279,7 +279,7 @@ bool Board::checkRow(int i, int j, int turn)
 	return false;
 }
 
-bool Board::checkCol(int i, int j, int turn)
+bool Board::checkRow(int i, int j, int turn)
 {
 	int left = 0, right = 0;
 	int count = 0, row = j;

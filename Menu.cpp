@@ -441,7 +441,7 @@ void Menu::changeFile(int key, vector<string>& fileName, int& file)
 		{
 			Common::gotoXY(0, 9 + i % 8 * 2);
 			for (int j = 0; j < 107; j++)
-				putchar(32);
+				cout << ' ';
 			if (i < fileName.size())
 			{
 				Common::gotoXY(54 - fileName[i].find('-'), 9 + i % 8 * 2);
