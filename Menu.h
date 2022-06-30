@@ -27,5 +27,5 @@ public:
 	static void printAnimation();							//In hiệu ứng mở đầu
 	static void printRectangle(int, int, int, int);			//Vẽ hình chữ nhật
 	static void changeOption(bool, bool);					//Thay đổi lựa chọn
-	static void changeFile(int, vector<string>&, int&);		//Thay đổi file
+	static void changeFile(vector<string>&, int&);		    //Thay đổi file
 };

@@ -364,8 +364,21 @@ void Menu::loadScreen()
 		Sleep(3000);
 		return;
 	}
-	int file = 8;
-	changeFile(3, fileName, file);
+	int file = 0;
+	changeFile(fileName, file);
+
+	int j = 20;
+	int sz;
+
+	if (fileName.size() < 8)
+	{
+		sz = fileName.size();
+	}
+	else
+	{
+		sz = 8;
+	}
+
 	bool chosen = 0;
 	while (!chosen)
 	{
@@ -377,9 +390,35 @@ void Menu::loadScreen()
 			g.startGame();
 			chosen = 1;
 		}
-		else if (key > 1 && key < 6)
+		else if (key == 2)
 		{
-			changeFile(key, fileName, file);
+			if (file == 0)
+			{
+				file = sz - 1;
+				changeFile(fileName, file);
+				Common::playSound(2);
+			}
+			else
+			{
+				file--;
+				changeFile(fileName, file);
+				Common::playSound(2);
+			}
+		}
+		else if (key == 5)
+		{
+			if (file == sz - 1)
+			{
+				file = 0;
+				changeFile(fileName, file);
+				Common::playSound(2);
+			}
+			else
+			{
+				file++;
+				changeFile(fileName, file);
+				Common::playSound(2);
+			}
 		}
 		else if (key == 1)
 		{
@@ -392,73 +431,36 @@ void Menu::loadScreen()
 	}
 }
 
-void Menu::changeFile(int key, vector<string>& fileName, int& file)
+void Menu::changeFile(vector<string>& fileName, int& file)
 {
-	//printLogo();
-	if (key == 3 || key == 4)
+	system("cls");
+	printLogo();
+	
+	int j = 20;
+	int sz;
+
+	if (fileName.size() < 8)
 	{
-		if (key == 3 && file > 7)
-		{
-			Common::playSound(2);
-			file = (file / 8 - 1) * 8;
-		}
-		else if (key == 4 && file / 8 < fileName.size() / 8)
-		{
-			file = (file / 8 + 1) * 8;
-		}
-		else
-		{
-			Common::playSound(4);
-			return;
-		}
-		Common::playSound(2);
-		Common::setConsoleColor(BRIGHT_WHITE, BLACK);
-		int i = 0;
-		for (i = file + 1; i < file + 8; i++)
-		{
-			Common::gotoXY(0, 9 + i % 8 * 2);
-			for (int j = 0; j < 107; j++)
-				cout << ' ';
-			if (i < fileName.size())
-			{
-				Common::gotoXY(54 - fileName[i].find('-'), 9 + i % 8 * 2);
-				cout << fileName[i];
-			}
-		}
-		Common::gotoXY(15, 16);
-		(file - 8 < 0) ? putchar(32) : putchar(60);
-		Common::gotoXY(93, 16);
-		(file + 8 >= fileName.size()) ? putchar(32) : putchar(62);
-		Common::setConsoleColor(BRIGHT_WHITE, RED);
-		Common::gotoXY(0, 9);
-		for (int j = 0; j < 107; j++)
-			putchar(32);
-		Common::gotoXY(54 - fileName[file].find('-'), 9);
-		cout << fileName[file];
+		sz = fileName.size();
 	}
-	else if (key == 2 || key == 5)
+	else
 	{
-		if (key == 2 && file % 8 > 0)
+		sz = 8;
+	}
+	
+	for (int i = 0; i < sz; i++)
+	{
+		Common::gotoXY(40, j);
+		j++;
+		if (i == file)
 		{
+			Common::setConsoleColor(BRIGHT_WHITE, RED);
+			cout << fileName[i];
 			Common::setConsoleColor(BRIGHT_WHITE, BLACK);
-			Common::gotoXY(54 - fileName[file].find('-'), 9 + file % 8 * 2);
-			cout << fileName[file];
-			file--;
-		}
-		else if (key == 5 && file % 8 < 7 && file < fileName.size() - 1)
-		{
-			Common::setConsoleColor(BRIGHT_WHITE, BLACK);
-			Common::gotoXY(54 - fileName[file].find('-'), 9 + file % 8 * 2);
-			cout << fileName[file];
-			file++;
 		}
 		else
 		{
-			Common::playSound(4);
-			return;
+			cout << fileName[i];
 		}
-		Common::setConsoleColor(BRIGHT_WHITE, RED);
-		Common::gotoXY(54 - fileName[file].find('-'), 9 + file % 8 * 2);
-		cout << fileName[file];
 	}
 }
