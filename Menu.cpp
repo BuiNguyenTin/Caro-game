@@ -200,29 +200,24 @@ void Menu::helpScreen()
 	Common::gotoXY(left + 50, top + 3);
 	cout << "+ Right: D, right arrow";
 
-	Common::gotoXY(left + 13, top + 5);
-	int left1 = left + 13;
-	cout << "The player 1 is represented by 'X' symbol and it is the first turn.";
+	int left1 = left + 5;
 	Common::gotoXY(left1, top + 6);
+	cout << "The player 1 is represented by 'X' symbol and it is the first turn.";
+	Common::gotoXY(left1, top + 7);
 	cout << "The player 2 is represented by 'O symbol and it is the second turn.";
-	Common::gotoXY(left1, top + 8);
-	cout << "Players: + Press 'Enter' to tick into the rectangle on the board.";
 	Common::gotoXY(left1, top + 9);
+	cout << "Players: + Press 'Enter' to tick into the rectangle on the board.";
+	Common::gotoXY(left1, top + 10);
 	cout << "         + Press 'ESC' to exit the game.";
 	Common::gotoXY(left1, top + 11);
 	cout << "         + Press 'H' to open the Help screen.";
-	Common::gotoXY(left1, top + 12);
-	cout << "The player can't win if the row is blocked at both end by the other symbols.";
 	Common::gotoXY(left1, top + 13);
+	cout << "The player can't win if the row is blocked at both end by the other symbols.";
+	Common::gotoXY(left1, top + 15); 
 	cout << "The row can be horizontal, vertical, or diagonal.";
-	Common::gotoXY(left1, top + 15);
-	cout << "";
-	Common::gotoXY(left1, top + 16);
-	cout << "";
 	
 	Common::gotoXY(left + 18, top + 18);
 	cout << "Teacher: + Truong Toan Thinh";
-
 	Common::gotoXY(left + 18, top + 19);
 	cout << "Student: + Tran Nguyen Thanh Binh - 21127584";
 	Common::gotoXY(left + 18, top + 21);
