@@ -176,8 +176,6 @@ void Menu::helpScreen()
 	Common::setConsoleColor(BRIGHT_WHITE, BLACK);
 	Common::clearConsole();
 
-
-
 	int left = 13, top = 2, width = 81, height = 23;
 	int line1 = 6, line2 = 19, line3 = 24;
 	printRectangle(left, top, width, height);
@@ -191,68 +189,51 @@ void Menu::helpScreen()
 	{
 		cout << '-';
 	}
-	for (int i = 1; i < height; i++)
-	{
-		Common::gotoXY(line3, top + i);
-		cout << '|';
-	}
-	//Common::gotoXY(line3, line1);
-	//putchar(197);
-	//Common::gotoXY(line3, line2);
-	//putchar(197);
-	////=====================================================================//
-	//Common::setConsoleColor(BRIGHT_WHITE, RED);
-	//Common::gotoXY(left + 3, top + 2);
-	//cout << "Moves:";
-	//Common::gotoXY(left + 20, top + 1);
-	//putchar(249); cout << "Up:    W, up arrow";
-	//Common::gotoXY(left + 52, top + 1);
-	//putchar(249); cout << "Down:  S, down arrow";
-	//Common::gotoXY(left + 20, top + 3);
-	//putchar(249); cout << "Left:  A, left arrow";
-	//Common::gotoXY(left + 52, top + 3);
-	//putchar(249); cout << "Right: D, right arrow";
-	////=====================================================================//
-	//Common::gotoXY(left + 3, top + 10);
-	//cout << "Rules:";
-	//Common::gotoXY(left + 13, top + 5);
-	//int left1 = left + 13;
-	//putchar(249); cout << "The player representing the 'X' symbol gets to take the first turn";
-	//Common::gotoXY(left1, top + 6);
-	//cout << " followed by the player representing the 'O' symbol.";
-	//Common::gotoXY(left1, top + 8);
-	//putchar(249); cout << "Players take turns placing their symbol on an open intersection";
-	//Common::gotoXY(left1, top + 9);
-	//cout << " on the board.";
-	//Common::gotoXY(left1, top + 11);
-	//putchar(249); cout << "The player that manages to create exactly five in a row first,";
-	//Common::gotoXY(left1, top + 12);
-	//cout << " without being blocked by another color or symbol at either end";
-	//Common::gotoXY(left1, top + 13);
-	//cout << " wins the round.";
-	//Common::gotoXY(left1, top + 15);
-	//putchar(249); cout << "The row can be horizontal, vertical, or diagonal as long as";
-	//Common::gotoXY(left1, top + 16);
-	//cout << " it is unbroken.";
-	////=====================================================================//
-	//Common::gotoXY(left + 3, top + 20);
-	//cout << "About:";
-	//Common::gotoXY(left + 28, top + 18);
-	//cout << "Teacher:            Truong Toan Thinh";
-	//Common::gotoXY(left + 28, top + 19);
-	//cout << "Teaching assistant: Nguyen Hai Dang";
-	//Common::gotoXY(left + 13, top + 21);
-	//cout << "+ Nguyen Xuan Phat (19127504)       + Pham Tien Quan     (19127526)";
-	//Common::gotoXY(left + 13, top + 22);
-	//cout << "+ Dang Tu Thieu    (19127557)       + Luong Truong Thinh (19127559)";
+	
+	Common::setConsoleColor(BRIGHT_WHITE, BLUE);
+	Common::gotoXY(left + 10, top + 1);
+	cout << "Intrucstion: + Up:    W, up arrow";
+	Common::gotoXY(left + 50, top + 1);
+	cout << "+ Down:  S, down arrow";
+	Common::gotoXY(left + 10, top + 3);
+	cout << "             + Left:  A, left arrow";
+	Common::gotoXY(left + 50, top + 3);
+	cout << "+ Right: D, right arrow";
+
+	Common::gotoXY(left + 13, top + 5);
+	int left1 = left + 13;
+	cout << "The player 1 is represented by 'X' symbol and it is the first turn.";
+	Common::gotoXY(left1, top + 6);
+	cout << "The player 2 is represented by 'O symbol and it is the second turn.";
+	Common::gotoXY(left1, top + 8);
+	cout << "Players: + Press 'Enter' to tick into the rectangle on the board.";
+	Common::gotoXY(left1, top + 9);
+	cout << "         + Press 'ESC' to exit the game.";
+	Common::gotoXY(left1, top + 11);
+	cout << "         + Press 'H' to open the Help screen.";
+	Common::gotoXY(left1, top + 12);
+	cout << "The player can't win if the row is blocked at both end by the other symbols.";
+	Common::gotoXY(left1, top + 13);
+	cout << "The row can be horizontal, vertical, or diagonal.";
+	Common::gotoXY(left1, top + 15);
+	cout << "";
+	Common::gotoXY(left1, top + 16);
+	cout << "";
+	
+	Common::gotoXY(left + 18, top + 18);
+	cout << "Teacher: + Truong Toan Thinh";
+
+	Common::gotoXY(left + 18, top + 19);
+	cout << "Student: + Tran Nguyen Thanh Binh - 21127584";
+	Common::gotoXY(left + 18, top + 21);
+	cout << "         + Nguyen Thi Cam Nhung   - 21127386";
+	Common::gotoXY(left + 18, top + 22);
+	cout << "         + Bui Nguyen Tin         - 21127702";
 
 	Common::setConsoleColor(BRIGHT_WHITE, RED);
-	Common::gotoXY(47, 28);
-	cout << '~';
-	Common::gotoXY(52, 28);
-	cout << "Back";
-	Common::gotoXY(60, 28);
-	cout << '~';
+	Common::gotoXY(44, 28);
+	cout << "~     Back     ~";
+
 	while (Common::getConsoleInput() != 6)
 	{
 		Common::playSound(4);
