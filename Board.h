@@ -2,7 +2,7 @@
 #include <vector>
 #include <iostream>
 #include <fstream>
-#include <random>
+#include <ctime>
 #include <iomanip>
 #include "Point.h"
 #include "Common.h"
@@ -36,8 +36,8 @@ public:
 	bool checkCol(int, int, int);	//Kiểm tra thắng ở cột
 	bool checkDiag1(int, int, int); //Kiểm tra thắng ở chéo 1
 	bool checkDiag2(int, int, int); //Kiểm tra thắng ở chéo 2
-	Point PVC();				//Tìm vị trí chế độ máy
+	Point PVC();					//Tìm vị trí chế độ máy
 	void loadBoard(ifstream&);		//Load vị trí X,O
 	void saveBoard(ofstream&);		//Lưu vị trí X,O
-	Point* getWinPos();			//Lấy vị trí thắng
+	Point* getWinPos();				//Lấy vị trí thắng
 };

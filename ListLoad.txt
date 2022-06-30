@@ -1,2 +1,4 @@
 load\emiu-anhiu
-load\-
+load\tin-duc
+load\h-Computer
+load\dfghj-Computer

@@ -13,7 +13,7 @@ void Menu::mainScreen()
 		{options[2], helpScreen},
 		{options[3], exitScreen},
 		{options[4], playPvP},
-		{options[5], playPvC1},
+		{options[5], playPvC},
 		{options[6], goBack} };
 	Common::playSound(8);
 	printAnimation();
@@ -74,7 +74,7 @@ void Menu::printLogo()
 
 void Menu::printAnimation()
 {
-	Common::setConsoleColor(BRIGHT_WHITE, BLACK);
+	/*Common::setConsoleColor(BRIGHT_WHITE, BLACK);
 	Common::clearConsole();
 
 	int color[] = { BLUE, GREEN, PURPLE, RED };
@@ -106,7 +106,7 @@ void Menu::printAnimation()
 			Sleep(500);
 			Common::setConsoleColor(BRIGHT_WHITE, BLACK);
 		}
-	}
+	}*/
 }
 
 void Menu::changeOption(bool direction, bool flag)
@@ -353,7 +353,7 @@ void Menu::exitScreen()
 	}
 }
 
-void Menu::playPvC1()
+void Menu::playPvC()
 {
 	Game g;
 	g.setUpGame(1);
@@ -418,6 +418,7 @@ void Menu::loadScreen()
 
 void Menu::changeFile(int key, vector<string>& fileName, int& file)
 {
+	//printLogo();
 	if (key == 3 || key == 4)
 	{
 		if (key == 3 && file > 7)

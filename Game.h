@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include <iostream>
-#include <Random>
 #include <conio.h>
 #include <fstream>
 #include "Menu.h"
@@ -16,7 +15,7 @@ using namespace std;
 class Game
 {
 private:
-	Board* _b;       //Bảng cờ carô
+	Board* _b;        //Bảng cờ carô
 	string _p1Name;   //Tên người chơi 1
 	string _p2Name;   //Tên người chơi 2
 	int _countP1Wins; //Số lần người chơi 1 thắng
@@ -28,10 +27,10 @@ private:
 	bool _changeTurn; //Cờ thay đổi khi đổi lượt
 	bool _loop;       //1: Chơi tiếp, 0: dừng lại
 	bool _showCursor; //Cờ để ẩn, hiện con trỏ
-	int _mode;        //0: chế đồ người-người, 1: chế độ người-máy(dễ), 2: chế độ người-máy(khó)
+	int _mode;        //0: chế đồ người-người, 1: chế độ người-máy
 	bool _loadSymbols;//1: load lại các kí hiệu trên bàn cơ khi chưa kết thúc ván cờ
 public:
-	Game();                             //Phương thức tạo lập
+	Game();                              //Phương thức tạo lập
 	~Game();							 //Phương thức hủy
 	void startGame();					 //Bắt đầu trò chơi
 	int processFinish();			     //Xử lí kết thúc

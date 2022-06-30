@@ -130,8 +130,6 @@ void Common::playSound(int i)
 
 int getRandomInt(int begin, int end)
 {
-	static random_device rd;
-	static mt19937 mt(rd());
-	uniform_int_distribution<int> dist(0, end);
-	return dist(mt);
+	int n = rand() % (end - begin + 1) + begin;
+	return n;
 }

@@ -2,7 +2,6 @@
 #include <iostream>
 #include <string>
 #include <unordered_map>
-#include <filesystem>
 #include "Common.h"
 #include "Game.h"
 
@@ -22,8 +21,7 @@ public:
 	static void helpScreen();								//Màn hình hướng dẫn
 	static void exitScreen();								//Màn hình thoát
 	static void playPvP();									//Chế độ người-người
-	static void playPvC1();									//Chế độ người-máy(dễ)
-	static void playPvC2();									//Chế độ người-máy(khó)
+	static void playPvC();									//Chế độ người-máy
 	static void printLogo();								//In ra logo
 	static void goBack() {}									//Trở về menu
 	static void printAnimation();							//In hiệu ứng mở đầu

@@ -215,7 +215,6 @@ bool Board::checkCol(int i, int j, int turn)
 {
 	int up = 0, down = 0;
 	int count = 0, col = i;
-	
 	while (col <= _size - 1 && _pArr[col][j].getCheck() == _pArr[i][j].getCheck() && _pArr[i][j].getCheck() == turn)
 	{
 		if (col == _size - 1)
@@ -283,7 +282,6 @@ bool Board::checkRow(int i, int j, int turn)
 {
 	int left = 0, right = 0;
 	int count = 0, row = j;
-	// kiểm tra cột
 	while (row <= _size - 1 && _pArr[i][row].getCheck() == _pArr[i][j].getCheck() && _pArr[i][j].getCheck() == turn)
 	{
 		if (row == _size - 1)
@@ -350,7 +348,7 @@ bool Board::checkRow(int i, int j, int turn)
 bool Board::checkDiag1(int i, int j, int turn)
 {
 	int LR_Col = 0, LR_Row = 0, UL_Col = 0, UL_Row = 0;
-	// kiểm tra đường chéo 1
+	// kiểm tra đường chéo huyền
 	int row = i, col = j, count = 0;
 	while (col <= _size - 1 && row <= _size - 1 && _pArr[i][j].getCheck() == _pArr[row][col].getCheck() && _pArr[row][col].getCheck() == turn)
 	{
@@ -433,7 +431,7 @@ bool Board::checkDiag1(int i, int j, int turn)
 bool Board::checkDiag2(int i, int j, int turn)
 {
 	int LL_Row = 0, LL_Col = 0, UR_Row = 0, UR_Col = 0;
-	// kiểm tra đường chéo 2
+	// kiểm tra đường chéo sắc
 	int row = i, col = j, count = 0;
 	while (col >= 0 && row <= _size - 1 && _pArr[i][j].getCheck() == _pArr[row][col].getCheck() && _pArr[row][col].getCheck() == turn)
 	{

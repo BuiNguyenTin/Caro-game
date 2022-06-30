@@ -28,8 +28,8 @@ using namespace std;
 class Common
 {
 private:
-	static HWND consoleWindow;    //Con trỏ xử lí cửa sổ console
-	static HANDLE consoleOutput;  //Con trỏ xử lí output console
+	static HWND consoleWindow;				  //Con trỏ xử lí cửa sổ console
+	static HANDLE consoleOutput;			  //Con trỏ xử lí output console
 public:
 	Common() {}
 	~Common() {}
