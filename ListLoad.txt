@@ -2,3 +2,5 @@ load\emiu-anhiu
 load\tin-duc
 load\h-Computer
 load\dfghj-Computer
+load\tin-tit
+load\tin-tinf

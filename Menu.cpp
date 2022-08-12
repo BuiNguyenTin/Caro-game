@@ -74,7 +74,7 @@ void Menu::printLogo()
 
 void Menu::printAnimation()
 {
-	/*Common::setConsoleColor(BRIGHT_WHITE, BLACK);
+	Common::setConsoleColor(BRIGHT_WHITE, BLACK);
 	Common::clearConsole();
 
 	int color[] = { BLUE, GREEN, PURPLE, RED };
@@ -106,7 +106,7 @@ void Menu::printAnimation()
 			Sleep(500);
 			Common::setConsoleColor(BRIGHT_WHITE, BLACK);
 		}
-	}*/
+	}
 }
 
 void Menu::changeOption(bool direction, bool flag)
